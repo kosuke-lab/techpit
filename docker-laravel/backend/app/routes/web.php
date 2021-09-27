@@ -19,8 +19,7 @@ Route::get('/', function () {
     return view('welcome');  
 });
 
-Route::get('/','ArticleController@index');
-
-Auth::routes();
+Route::get('/','ArticleController@index')->name('articles.index');
+Route::resource('/articles', 'ArticleController')->except(['index'])->middleware('auth'); 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
